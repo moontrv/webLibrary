@@ -11,12 +11,12 @@
     <link rel="stylesheet" href="css/style-desktop.css" />
     <link rel="stylesheet" type="text/css" href="slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
     <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
-	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAppvlbr7PozFnpz8UBw--4DJiNggZIAek&sensor=false"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAppvlbr7PozFnpz8UBw--4DJiNggZIAek&sensor=false"></script>
 </head>
 
 <body>
@@ -28,34 +28,35 @@
                     <!-- Logo -->
                     <h1><a href="#" id="logo" class="pull-left" style="">Metropolia Library</a></h1>
                     <!-- Nav -->
-                    <nav id="nav" class="nav navbar-right">					
+                    <nav id="nav" class="nav navbar-right">
                         <a href="index.html">Homepage</a>
                         <a href="http://www.metropolia.fi/palvelut/kirjasto/aukioloajat-ja-yhteystiedot/leppavaara/" target="_blank">Service</a>
                         <a href="http://www.metropolia.fi/tutkimus-ja-kehitys/" target="_blank">R&D</a>
                         <a href="http://www.metropolia.fi/medialle/" target="_blank">Media</a>
-						<!--href="http://www.metropolia.fi/tietoa-metropoliasta/"-->
+                        <!--href="http://www.metropolia.fi/tietoa-metropoliasta/"-->
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">More information<span class="caret"></span></a>
-						<ul class="dropdown-menu" id="my_c">
-							<li><a href="#">Campus Location</a></li>
-							<li><a href="#">Weather Update</a></li>
-							<li><a href="#">Make reservation</a></li>
-						</ul>						
+                        <ul class="dropdown-menu" id="my_c">
+                            <li><a href="#">Campus Location</a></li>
+                            <li><a href="#">Weather Update</a></li>
+                            <li><a href="#">Make reservation</a></li>
+                        </ul>
                     </nav>
                 </div>
             </div>
-		<style>
-			#my_c {
-				background-color: #413e42;				
-			}
-		</style>	
+            <style>
+            #my_c {
+                background-color: #413e42;
+            }
+            </style>
         </header>
         <div id="banner">
             <div class="container">
                 <div class="row">
                     <div class="6u">
                         <!-- Banner Copy -->
-                        <p>With exceptional services ...</p>
-                        <a href="https://metcat.amkit.fi/" target="_blank" class="button-big">Search book</a>
+                        <form id="searchBar">
+                            <input type="text" name="search" placeholder="Search..">
+                        </form>
                     </div>
                     <div class="6u" id="slide_sh">
                         <!-- Banner Image -->
@@ -65,10 +66,10 @@
                             <div><img src="images/metropolia3.jpg" /></div>
                         </div>
                     </div>
-					<div id ="googleMap" class="6u" style="width:620px;height:290px;display: none;">								
-								<!-- Banner section 
-									<a href="#" class="bordered-feature-image"><img src="images/metropolia485.jpg" alt="" /></a> -->							
-					</div>
+                    <div id="googleMap" class="6u" style="width:620px;height:290px;display: none;">
+                        <!-- Banner section 
+									<a href="#" class="bordered-feature-image"><img src="images/metropolia485.jpg" alt="" /></a> -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -262,106 +263,103 @@
     <script src="js/skel.min.js"></script>
     <script src="js/skel-panels.min.js"></script>
     <script type="text/javascript" src="js/library.js"></script>
-	<script>
+    <script>
+    var myCenter = new google.maps.LatLng(60.2207937, 24.8061204);
 
-		var myCenter=new google.maps.LatLng(60.2207937, 24.8061204);
+    function initialize() {
+        var locations = [
+            ['<h4>Vanha maantie 6</h4>', 60.2207937, 24.8061204],
+            ['<h4>Leiritie 1</h4>', 60.2585857, 24.8455813],
+            ['<h4>Lyckovägen 18</h4>', 60.2197340, 24.9567340],
+            ['<h4>Vanha viertotie 23</h4>', 60.2111290, 24.8816590],
+            ['<h4>Mannerheimintie 172</h4>', 60.2060460, 24.8978630],
+            ['<h4>Bulevardi(2 campuses)</h4>', 60.1626860, 24.9319740],
+            ['<h4>Sofianlehdonkatu 5</h4>', 60.2038870, 24.9505270],
+            ['<h4>Agricolankatu 1</h4>', 60.1843650, 24.9562500],
+            ['<h4>Arabiankatu 2</h4>', 60.2069060, 24.9754170],
+            ['<h4>Hämeentie 161</h4>', 60.2147380, 24.9804220]
+        ];
 
-		function initialize()
-		{		
-		var locations = [
-		  ['<h4>Vanha maantie 6</h4>', 60.2207937, 24.8061204],		 
-		  ['<h4>Leiritie 1</h4>', 60.2585857, 24.8455813],
-		  ['<h4>Lyckovägen 18</h4>', 60.2197340, 24.9567340],
-		  ['<h4>Vanha viertotie 23</h4>', 60.2111290, 24.8816590],
-		  ['<h4>Mannerheimintie 172</h4>', 60.2060460, 24.8978630],
-		  ['<h4>Bulevardi(2 campuses)</h4>', 60.1626860, 24.9319740],
-		  ['<h4>Sofianlehdonkatu 5</h4>', 60.2038870, 24.9505270],
-		  ['<h4>Agricolankatu 1</h4>', 60.1843650, 24.9562500],
-		  ['<h4>Arabiankatu 2</h4>', 60.2069060, 24.9754170],
-		  ['<h4>Hämeentie 161</h4>', 60.2147380, 24.9804220]
-		];
-    
-		// using ready-made icons
-		var iconURLPrefix = 'http://maps.google.com/mapfiles/ms/icons/';
-		
-		var icons = [
-		  iconURLPrefix + 'red-dot.png',
-		  iconURLPrefix + 'green-dot.png',
-		  iconURLPrefix + 'blue-dot.png',
-		  iconURLPrefix + 'orange-dot.png',
-		  iconURLPrefix + 'purple-dot.png',
-		  iconURLPrefix + 'pink-dot.png',      
-		  iconURLPrefix + 'yellow-dot.png'
-		]
-		var icons_length = icons.length;		
-		
-		var shadow = {
-		  anchor: new google.maps.Point(15,33),
-		  url: iconURLPrefix + 'msmarker.shadow.png'
-		};
-		
-		var mapProp = {
-		  center:myCenter,
-		  zoom:10,
-		  mapTypeId:google.maps.MapTypeId.ROADMAP
-		};
-		var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        // using ready-made icons
+        var iconURLPrefix = 'http://maps.google.com/mapfiles/ms/icons/';
 
-		var infowindow = new google.maps.InfoWindow({
-		  
-		});
-		
-		var iconCounter = 0;
-		//create array of markers
-		var markers = new Array();
-		
-		// Extract info from location array
-		for (var i = 0; i < locations.length; i++) {  
-			marker = new google.maps.Marker({
-			position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-			map: map,
-			icon : icons[iconCounter],
-			shadow: shadow
-		  });
+        var icons = [
+            iconURLPrefix + 'red-dot.png',
+            iconURLPrefix + 'green-dot.png',
+            iconURLPrefix + 'blue-dot.png',
+            iconURLPrefix + 'orange-dot.png',
+            iconURLPrefix + 'purple-dot.png',
+            iconURLPrefix + 'pink-dot.png',
+            iconURLPrefix + 'yellow-dot.png'
+        ]
+        var icons_length = icons.length;
 
-		  markers.push(marker);
+        var shadow = {
+            anchor: new google.maps.Point(15, 33),
+            url: iconURLPrefix + 'msmarker.shadow.png'
+        };
 
-		  google.maps.event.addListener(marker, 'click', (function(marker, i) {
-			return function() {
-			  infowindow.setContent(locations[i][0]);
-			  infowindow.open(map, marker);
-			}
-		  })(marker, i));
-		  
-		  iconCounter++;
-		  // restart counter if there are not enough markers
-		  if(iconCounter >= icons_length){
-			iconCounter = 0;
-		  }
-		}
+        var mapProp = {
+            center: myCenter,
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
-		var but1 = document.getElementById('button1');		
-		//functions for 2 buttons here were not implemented (design constraint)		
-		google.maps.event.addDomListener(but1, 'click', function() {		 
-			marker.setMap(map);
-		});
+        var infowindow = new google.maps.InfoWindow({
 
-		function AutoCenter() {
-		  
-		  var bounds = new google.maps.LatLngBounds();
-		  //  iterate through bound values
-		  $.each(markers, function (index, marker) {
-			bounds.extend(marker.position);
-		  });
-		  
-		  map.fitBounds(bounds);
-		}
-		AutoCenter();
-		}
-		// load map when page ready
-		google.maps.event.addDomListener(window, 'load', initialize);
+        });
 
-		</script>
+        var iconCounter = 0;
+        //create array of markers
+        var markers = new Array();
+
+        // Extract info from location array
+        for (var i = 0; i < locations.length; i++) {
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                map: map,
+                icon: icons[iconCounter],
+                shadow: shadow
+            });
+
+            markers.push(marker);
+
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    infowindow.setContent(locations[i][0]);
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+
+            iconCounter++;
+            // restart counter if there are not enough markers
+            if (iconCounter >= icons_length) {
+                iconCounter = 0;
+            }
+        }
+
+        var but1 = document.getElementById('button1');
+        //functions for 2 buttons here were not implemented (design constraint)		
+        google.maps.event.addDomListener(but1, 'click', function() {
+            marker.setMap(map);
+        });
+
+        function AutoCenter() {
+
+            var bounds = new google.maps.LatLngBounds();
+            //  iterate through bound values
+            $.each(markers, function(index, marker) {
+                bounds.extend(marker.position);
+            });
+
+            map.fitBounds(bounds);
+        }
+        AutoCenter();
+    }
+    // load map when page ready
+    google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
 </body>
 
 </html>
