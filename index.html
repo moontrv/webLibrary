@@ -72,10 +72,18 @@
 						<div id="load_p" style="width:620px;height:290px;display: none;">
 							<div class='wrapper text-center'>
 								<div class="btn-group">
-								<button type="button" class="btn btn-info btn-lg onclick="getP()">See reservation</button>
-								<button type="button" class="btn btn-info btn-lg onclick="">Make reservation</button>
-								</div>
-							</div>	
+								<button id="see_R" type="button" class="btn btn-info btn-lg">See reservation</button>
+								<button type="button" class="btn btn-info btn-lg">Make reservation</button>
+								</div>	
+								<table id="toB" class="table-hover table-bordered" style="display: none">
+									<th>Student Number</th>
+									<th>Name</th>
+									<th>Time</th>
+								</table>
+							</div>
+							<div>
+								
+							</div>
 						</div>
                     </div>
                     
@@ -286,9 +294,19 @@
 		$("#load_p").show();	
 	});
 	
-	function getP(){
-		//alert("response");
-	}	
+	$("#see_R").click(function() {
+		$("#toB").show();
+		$.getJSON("student.json", function(result){
+			var tr;
+			for (var i = 0; i < result.length; i++) {
+				tr = $('<tr/>');
+				tr.append("<td>" + result[i]["studen number"] + "</td>");
+				tr.append("<td>" + result[i].name + "</td>");
+				tr.append("<td>" + result[i].time + "</td>");
+				$('#toB').append(tr);
+			}
+		});								
+	});	
 	
     var myCenter = new google.maps.LatLng(60.2207937, 24.8061204);
 
