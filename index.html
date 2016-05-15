@@ -36,7 +36,7 @@
                         <!--href="http://www.metropolia.fi/tietoa-metropoliasta/"-->
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">More information<span class="caret"></span></a>
                         <ul class="dropdown-menu" id="my_c">
-                            <li><a href="#">Campus Location</a></li>
+                            <li><a href="#" id="cam_l">Campus Location</a></li>
                             <li><a href="#">Weather Update</a></li>
                             <li><a href="#">Make reservation</a></li>
                         </ul>
@@ -58,18 +58,19 @@
                             <input type="text" name="search" placeholder="Search..">
                         </form>
                     </div>
-                    <div class="6u" id="slide_sh">
+                    <div class="6u">
                         <!-- Banner Image -->
-                        <div class="image-slide">
+                        <div class="image-slide" id="im_sl">
                             <div><img src="images/metropolia485.jpg" /></div>
                             <div><img src="images/metropolia2.jpg" /></div>
                             <div><img src="images/metropolia3.jpg" /></div>
                         </div>
-                    </div>
-                    <div id="googleMap" class="6u" style="width:620px;height:290px;display: none;">
+						<div id="googleMap" style="width:620px;height:290px;display: none;">
                         <!-- Banner section 
 									<a href="#" class="bordered-feature-image"><img src="images/metropolia485.jpg" alt="" /></a> -->
+						</div>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -264,6 +265,13 @@
     <script src="js/skel-panels.min.js"></script>
     <script type="text/javascript" src="js/library.js"></script>
     <script>
+	
+	$("#cam_l").click(function(){
+		$("#im_sl").hide();	
+		$("#googleMap").show();	
+		initialize();
+	});
+	
     var myCenter = new google.maps.LatLng(60.2207937, 24.8061204);
 
     function initialize() {
