@@ -240,6 +240,7 @@ input[type=text]:focus {
 }
 
 #weatherBox{
+	margin-left: 170px;
 	width: 250px;
 	height: 250px;
 	/*border: dotted;*/

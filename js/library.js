@@ -12,7 +12,7 @@ $(document).ready(function(){
 "hail": "wi wi-hail",
 "thunderstorm": "wi wi-thunderstorm",
 "tornado": "wi wi-tornado"}
-	setInterval(updateWeather(), 30000);
+	setInterval(updateWeather(), 1800000);
 	
 	$('.image-slide').slick({
 		autoplay:true,
