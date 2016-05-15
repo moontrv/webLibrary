@@ -38,7 +38,7 @@
                         <ul class="dropdown-menu" id="my_c">
                             <li><a href="#" id="cam_l">Campus Location</a></li>
                             <li><a href="#">Weather Update</a></li>
-                            <li><a href="#">Make reservation</a></li>
+                            <li><a href="#" id="rev">Make reservation</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -68,6 +68,9 @@
 						<div id="googleMap" style="width:620px;height:290px;display: none;">
                         <!-- Banner section 
 									<a href="#" class="bordered-feature-image"><img src="images/metropolia485.jpg" alt="" /></a> -->
+						</div>
+						<div id="load_p" style="width:620px;height:290px;display: none;">
+							<button type="button" class="btn btn-info btn-lg center-block" onclick="getP()">See reservation</button>
 						</div>
                     </div>
                     
@@ -271,6 +274,16 @@
 		$("#googleMap").show();	
 		initialize();
 	});
+	
+	$("#rev").click(function(){
+		$("#im_sl").hide();	
+		$("#googleMap").hide();	
+		$("#load_p").show();	
+	});
+	
+	function getP(){
+		alert("response");
+	}	
 	
     var myCenter = new google.maps.LatLng(60.2207937, 24.8061204);
 
