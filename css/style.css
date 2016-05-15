@@ -238,3 +238,26 @@ input[type=text] {
 input[type=text]:focus {
     width: 100%;
 }
+
+#weatherBox{
+	width: 250px;
+	height: 250px;
+	/*border: dotted;*/
+	font-size: 50px;
+	text-align: center;
+}
+
+#temperature{
+	font-size:large !important; 
+	text-align: center !important;
+}
+
+#weatherSummary{
+	font-size:large !important; 
+	text-align: center !important;
+}
+
+#weatherIcon{
+	margin-top: 20px;
+
+}

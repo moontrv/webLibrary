@@ -1,4 +1,19 @@
 $(document).ready(function(){
+	var weatherIcon={"clear-day": "wi wi-day-sunny",
+"clear-night": "wi wi-night-clear",
+"rain": "wi wi-rain",
+"snow": "wi wi-snow",
+"sleet": "wi wi-sleet",
+"wind": "wi wi-strong-wind",
+"fog": "wi wi-fog",
+"cloudy": "wi wi-cloudy",
+"partly-cloudy-day": "wi wi-day-cloudy",
+"partly-cloudy-night": "wi wi-night-cloudy",
+"hail": "wi wi-hail",
+"thunderstorm": "wi wi-thunderstorm",
+"tornado": "wi wi-tornado"}
+	setInterval(updateWeather(), 30000);
+	
 	$('.image-slide').slick({
 		autoplay:true,
 		autoplaySpeed:2000,
@@ -12,4 +27,15 @@ $(document).ready(function(){
 		console.log("submitted");
 		window.location.href = url;
 	});
+
+	function updateWeather(){
+		$.getJSON('http://cors.io/?u=https://api.forecast.io/forecast/efee78b06d5f1909579f00d6105b2956/60.2207375,24.8050341',function(data){
+		var weather = data.currently;
+		console.log(weather);
+		$('#weatherIcon').attr("class",weatherIcon[weather.icon]);
+		$('#temperature').append("<p>"+weather.apparentTemperature+"</p>");
+		$('#weatherSummary').append("<p>"+weather.summary+"</p>")
+
+	});
+	}
 })
