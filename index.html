@@ -38,7 +38,7 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">More information<span class="caret"></span></a>
                         <ul class="dropdown-menu" id="my_c">
                             <li><a href="#" id="cam_l">Campus Location</a></li>
-                            <li><a href="#">Weather Update</a></li>
+                            <!--<li><a href="#">Weather Update</a></li>-->
                             <li><a href="#" id="rev">Reservation</a></li>
                         </ul>
                     </nav>
@@ -56,9 +56,9 @@
                     <div class="6u">
                         <!-- Banner Copy -->
                         <form id="searchBar">
-                            <input type="text" name="search" placeholder="Search..">
+                            <input type="text" name="search" placeholder="Search book">
                         </form>
-                        <div id = "weatherBox">
+                        <div id = "weatherBox" style="margin: 0 auto;">
                         	<i id="weatherIcon" class="wi wi-night-sleet"></i>
                         	<p id="temperature"> 00.00</p>
                         	<p id="weatherSummary">N.A</p>
@@ -80,12 +80,12 @@
 								<div class="btn-group">
 								<button id="see_R" type="button" class="btn btn-info btn-lg">See reservation</button>
 								<button type="button" class="btn btn-info btn-lg">Make reservation</button>
-								</div>	
-								<table id="toB" class="table-hover table-bordered" style="display: none">
+								</div>							
+								<table id="toB" class="table-hover table-bordered" style="display: none; margin: 0 auto; margin-top:5%">
 									<th>Student Number</th>
 									<th>Name</th>
 									<th>Time</th>
-								</table>
+								</table>								
 							</div>
 							<div>
 								
@@ -289,6 +289,7 @@
     <script>
 	
 	$("#cam_l").click(function(){
+		$("#load_p").hide();
 		$("#im_sl").hide();	
 		$("#googleMap").show();	
 		initialize();
@@ -300,7 +301,7 @@
 		$("#load_p").show();	
 	});
 	
-	$("#see_R").click(function() {
+	$("#see_R").one("click",function() {
 		$("#toB").show();
 		$.getJSON("student.json", function(result){
 			var tr;
