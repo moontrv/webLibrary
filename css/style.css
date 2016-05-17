@@ -239,14 +239,19 @@ input[type=text]:focus {
     width: 100%;
 }
 
-#weatherBox{
-	margin-left: 170px;
+@media only screen and (min-width: 1000px) {
+	#weatherBox{
+	margin-right:auto;
+	margin-left: auto;
 	width: 250px;
 	height: 250px;
 	/*border: dotted;*/
 	font-size: 50px;
 	text-align: center;
 }
+}
+
+
 
 #temperature{
 	font-size:large !important; 

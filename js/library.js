@@ -33,8 +33,8 @@ $(document).ready(function(){
 		var weather = data.currently;
 		console.log(weather);
 		$('#weatherIcon').attr("class",weatherIcon[weather.icon]);
-		$('#temperature').append("<p>"+weather.apparentTemperature+"</p>");
-		$('#weatherSummary').append("<p>"+weather.summary+"</p>")
+		$('#temperature').text(weather.apparentTemperature);
+		$('#weatherSummary').text(weather.summary)
 
 	});
 	}
